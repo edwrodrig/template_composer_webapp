@@ -6,6 +6,7 @@ namespace tpl_company_tpl\tpl_project_tpl\ws;
 use labo86\hapi_core\Request;
 use labo86\hapi_core\Response;
 use labo86\hapi_core\ResponseJson;
+use tpl_company_tpl\tpl_project_tpl\model\Sum;
 
 class Controller extends \labo86\hapi\Controller
 {
@@ -15,7 +16,9 @@ class Controller extends \labo86\hapi\Controller
         $this->getServiceMap()
             ->registerService('sum', function(Request $request) : Response {
                 $params = $request->getParams();
-                return new ResponseJson(["result" => $params['a'] + $params['b']]);
+                $sum = new Sum();
+                $result = $sum->do($params['a'], $params['b']);
+                return new ResponseJson(["result" => $result]);
             });
     }
 

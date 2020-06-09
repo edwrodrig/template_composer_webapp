@@ -3,6 +3,8 @@
     <testsuites>
         <testsuite name="main">
             <directory>./modules/model/test</directory>
+            <directory>./modules/site/test</directory>
+            <directory>./modules/ws/test</directory>
         </testsuite>
     </testsuites>
     <filter>

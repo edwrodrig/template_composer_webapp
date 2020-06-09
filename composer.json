@@ -16,16 +16,18 @@
         "ext-json": "*"
     },
     "require-dev" : {
-        "phpunit/phpunit" : "^7.0"
+        "phpunit/phpunit" : "^8.5"
     },
     "autoload" : {
         "psr-4" : {
+            "tpl_company_tpl\\tpl_project_tpl\\model\\" : "modules/model/src/",
             "tpl_company_tpl\\tpl_project_tpl\\site\\" : "modules/site/src/",
             "tpl_company_tpl\\tpl_project_tpl\\ws\\" : "modules/ws/src/"
         }
     },
     "autoload-dev" : {
         "psr-4" : {
+            "test\\tpl_company_tpl\\tpl_project_tpl\\model\\" : "modules/model/test/",
             "test\\tpl_company_tpl\\tpl_project_tpl\\site\\" : "modules/site/test/",
             "test\\tpl_company_tpl\\tpl_project_tpl\\ws\\" : "modules/ws/test/"
         }
