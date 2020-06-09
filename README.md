@@ -1,16 +1,12 @@
 tpl_company_tpl\tpl_project_tpl
 ========
-Un sistema para manejo de información oceanográfica.
+Una asombrosa aplicación web
 
 ![Hecho en Chile](https://img.shields.io/badge/country-Chile-red)
 
-Esta pensado en reemplazar varios proyectos:
-- https://github.com/edwrodrig/tpl_project_tpl_data_server
-- https://github.com/edwrodrig/glider_retriever
-
 
 ## Información de mi máquina de desarrollo
-Salida de [system_info.sh](https://github.com/edwrodrig/tpl_project_tpl_winston/blob/master/scripts/system_info.sh)
+Salida de [system_info.sh](https://github.com/tpl_company_tpl/tpl_project_tpl/blob/master/scripts/system_info.sh)
 ```
 + hostnamectl
 + grep -e 'Operating System:' -e Kernel:

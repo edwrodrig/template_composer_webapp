@@ -1,5 +1,6 @@
 {
     "name": "tpl_company_tpl/tpl_project_tpl",
+    "description" : "Una asombrosa aplicación web",
     "authors": [
         {
             "name": "Edwin Rodríguez-León",
@@ -10,11 +11,8 @@
     "minimum-stability" : "stable",
     "require": {
         "php" : "^7.4",
-        "edwrodrig/contento" : "^1.6",
-        "edwrodrig/image" : "^3.0",
         "labo86/staty" : "^0.2.0",
         "labo86/hapi" : "^0.1",
-        "mjaschen/phpgeo": "^2.2",
         "ext-json": "*"
     },
     "require-dev" : {
@@ -23,15 +21,13 @@
     "autoload" : {
         "psr-4" : {
             "tpl_company_tpl\\tpl_project_tpl\\site\\" : "modules/site/src/",
-            "tpl_company_tpl\\tpl_project_tpl\\model\\" : "modules/model/src/",
             "tpl_company_tpl\\tpl_project_tpl\\ws\\" : "modules/ws/src/"
         }
     },
     "autoload-dev" : {
         "psr-4" : {
-            "test\\tpl_company_tpl\\tpl_project_tpl\\site\\" : "modules/site/tests/",
-            "test\\tpl_company_tpl\\tpl_project_tpl\\model\\" : "modules/model/tests/",
-            "test\\tpl_company_tpl\\tpl_project_tpl\\ws\\" : "modules/ws/tests/"
+            "test\\tpl_company_tpl\\tpl_project_tpl\\site\\" : "modules/site/test/",
+            "test\\tpl_company_tpl\\tpl_project_tpl\\ws\\" : "modules/ws/test/"
         }
     }
 }
