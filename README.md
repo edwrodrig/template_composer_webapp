@@ -2,6 +2,12 @@ tpl_company_tpl\tpl_project_tpl
 ========
 Una asombrosa aplicación web
 
+[![Latest Stable Version](https://poser.pugx.org/tpl_company_tpl/tpl_project_tpl/v/stable)](https://packagist.org/packages/tpl_company_tpl/tpl_project_tpl)
+[![Total Downloads](https://poser.pugx.org/tpl_company_tpl/tpl_project_tpl/downloads)](https://packagist.org/packages/tpl_company_tpl/tpl_project_tpl)
+[![License](https://poser.pugx.org/tpl_company_tpl/tpl_project_tpl/license)](https://github.com/tpl_company_tpl/tpl_project_tpl/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/tpl_company_tpl/tpl_project_tpl.svg?branch=master)](https://travis-ci.org/tpl_company_tpl/tpl_project_tpl)
+[![codecov.io Code Coverage](https://codecov.io/gh/tpl_company_tpl/tpl_project_tpl/branch/master/graph/badge.svg)](https://codecov.io/github/tpl_company_tpl/tpl_project_tpl?branch=master)
+[![Code Climate](https://codeclimate.com/github/tpl_company_tpl/tpl_project_tpl/badges/gpa.svg)](https://codeclimate.com/github/tpl_company_tpl/tpl_project_tpl)
 ![Hecho en Chile](https://img.shields.io/badge/country-Chile-red)
 
 
