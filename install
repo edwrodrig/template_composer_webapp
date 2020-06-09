@@ -1,0 +1,8 @@
+#!/bin/sh
+set -x
+rm -rf tmp_template;
+wget https://github.com/labo86/temple_core/releases/download/0.1.0/temple_core.phar -O temple.phar;
+git clone --single-branch https://github.com/edwrodrig/template_composer_webapp.git -b template tmp_template;
+php temple.phar $1 $2 tmp_template $2;
+rm -rf tmp_template;
+rm -rf temple.phar
