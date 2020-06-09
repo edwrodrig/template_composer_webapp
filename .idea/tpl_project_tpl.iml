@@ -6,10 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/modules/site/src" isTestSource="false" packagePrefix="tpl_company_tpl\tpl_project_tpl\site\" />
       <sourceFolder url="file://$MODULE_DIR$/modules/ws/src" isTestSource="false" packagePrefix="tpl_company_tpl\tpl_project_tpl\ws\" />
       <sourceFolder url="file://$MODULE_DIR$/modules/site/test" isTestSource="true" packagePrefix="test\tpl_company_tpl\tpl_project_tpl\site\" />
-      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/modules/model/test" isTestSource="true" packagePrefix="test\tpl_company_tpl\tpl_project_tpl\model\" />
       <sourceFolder url="file://$MODULE_DIR$/modules/model/src" isTestSource="false" packagePrefix="tpl_company_tpl\tpl_project_tpl\model\" />
-      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/labo86/exception_with_data" />
