@@ -12,6 +12,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/edwrodrig/image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/labo86/exception_with_data" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/labo86/hapi" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/labo86/staty" />

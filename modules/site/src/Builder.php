@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace tpl_company_tpl\tpl_project_tpl\site;
 
 use labo86\exception_with_data\ExceptionWithData;
+use labo86\staty\PageSymlink;
 use labo86\staty_core\Context;
 use labo86\staty_core\Generator;
 use labo86\staty_core\ReaderDirectory;
@@ -17,22 +18,18 @@ class Builder
      * @throws ExceptionWithData
      */
     public function makeSite(string $source_dir, string $target_dir) {
-
-        if ( file_exists($target_dir) )
-            exec(sprintf('rm -rf %s', escapeshellarg($target_dir)));
-
         setlocale(LC_ALL, 'es_CL.utf-8');
-        $context = new Context('');
+        $context = new Context();
 
         $reader = new ReaderDirectory($context, $source_dir);
-        $pages = iterator_to_array($reader->readPages(), false);
+        foreach ( $reader->readPages() as $page )
+            $context->prepare($page);
+
+        $context->prepare(new PageSymlink(__DIR__ . '/../../ws/www/ws.php', 'ws/ws.php'));
 
         $generator = new Generator($target_dir);
-        $generator->setPageList($pages);
+        $generator->setPageList($context->getPreparedPageList());
         $generator->generate();
-
-
-        symlink (__DIR__ . '/../../ws/www', $target_dir . '/ws');
 
     }
 }

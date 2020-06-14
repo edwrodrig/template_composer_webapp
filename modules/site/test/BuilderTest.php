@@ -33,7 +33,7 @@ class BuilderTest extends TestCase
         $target_dir = $this->path . '/www';
         $this->assertFileNotExists($target_dir);
         $builder = new Builder();
-        $builder->makeSite(__DIR__ . '/../files', $target_dir);
+        $builder->makeSite(__DIR__ . '/../../data/html', $target_dir);
 
         $this->assertDirectoryExists($target_dir);
     }

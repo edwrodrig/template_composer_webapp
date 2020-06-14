@@ -8,12 +8,14 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 
 try {
     $builder = new Builder();
-    $builder->makeSite(__DIR__ . '/../modules/site/files', __DIR__ . '/../modules/site/www');
+    $builder->makeSite(__DIR__ . '/../modules/data/html', __DIR__ . '/../modules/www');
 } catch ( ExceptionWithData $exception ) {
     echo $exception->getMessage(), "\n";
     echo json_encode($exception->getData(),JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), "\n";
+    echo $exception->getFile() , ":" , $exception->getLine() ,"\n";
     echo json_encode($exception->getTrace(),JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), "\n";
 } catch ( Throwable $exception ) {
     echo $exception->getMessage(), "\n";
+    echo $exception->getFile() , ":" , $exception->getLine() ,"\n";
     echo json_encode($exception->getTrace(),JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE), "\n";
 }

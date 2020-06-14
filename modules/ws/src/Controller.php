@@ -17,7 +17,7 @@ class Controller extends \labo86\hapi\Controller
             ->registerService('sum', function(Request $request) : Response {
                 $params = $request->getParams();
                 $sum = new Sum();
-                $result = $sum->do($params['a'], $params['b']);
+                $result = $sum->do(intval($params['a']), intval($params['b']));
                 return new ResponseJson(["result" => $result]);
             });
     }
