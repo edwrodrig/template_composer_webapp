@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace tpl_company_tpl\tpl_project_tpl\ws;
+namespace tpl_company_tpl\tpl_project_tpl\controller;
 
 use labo86\hapi_core\Request;
 use labo86\hapi_core\Response;

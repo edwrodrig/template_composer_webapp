@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace tpl_company_tpl\tpl_project_tpl\site;
 
 use labo86\exception_with_data\ExceptionWithData;
-use labo86\staty\PageSymlink;
 use labo86\staty_core\Context;
 use labo86\staty_core\Generator;
 use labo86\staty_core\ReaderDirectory;
@@ -24,8 +23,6 @@ class Builder
         $reader = new ReaderDirectory($context, $source_dir);
         foreach ( $reader->readPages() as $page )
             $context->prepare($page);
-
-        $context->prepare(new PageSymlink(__DIR__ . '/../../ws/www/ws.php', 'ws/ws.php'));
 
         $generator = new Generator($target_dir);
         $generator->setPageList($context->getPreparedPageList());

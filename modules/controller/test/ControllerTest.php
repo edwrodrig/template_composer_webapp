@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace test\tpl_company_tpl\tpl_project_tpl\ws;
+namespace test\tpl_company_tpl\tpl_project_tpl\controller;
 
 use labo86\exception_with_data\ExceptionWithData;
 use labo86\hapi_core\Request;
 use labo86\hapi_core\ResponseJson;
-use tpl_company_tpl\tpl_project_tpl\ws\Controller;
+use tpl_company_tpl\tpl_project_tpl\controller\Controller;
 use PHPUnit\Framework\TestCase;
 
 class ControllerTest extends TestCase

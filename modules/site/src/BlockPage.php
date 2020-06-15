@@ -5,6 +5,7 @@ namespace tpl_company_tpl\tpl_project_tpl\site;
 
 use labo86\exception_with_data\ExceptionWithData;
 use labo86\staty_core\PageFile;
+use labo86\staty_core\PageString;
 use labo86\staty_core\SourceFile;
 
 class BlockPage extends Block
@@ -54,5 +55,14 @@ class BlockPage extends Block
 
     public function getDescription() : string {
         return $this->page->getMetadata()['description'] ?? '';
+    }
+
+    /**
+     * @return string
+     */
+    public function service() : string {
+        $php_include = sprintf("<?php\ninclude \"%s\";", realpath(__DIR__ . '/../../controller/www/ws.php'));
+        $link = new PageString($php_include, 'controller/ws.php');
+        return $this->makePage($link);
     }
 }
