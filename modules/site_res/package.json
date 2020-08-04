@@ -33,6 +33,6 @@
     }
   },
   "dependencies": {
-    "@labo86/sero": "^1.2.0"
+    "@labo86/sero": "^1.2.1"
   }
 }
