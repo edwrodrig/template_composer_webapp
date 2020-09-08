@@ -16,7 +16,7 @@ $BLOCK->sectionBeginHeadAddition();
 ?>
 <script>
     async function sum() {
-        let sum = page.get('sum').value;
+        let sum = sero.get('sum').value;
         const response = await fetch('<?=$BLOCK->service()?>?method=sum&a=' + sum.a + '&b=' + sum.b , {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin

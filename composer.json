@@ -11,8 +11,9 @@
     "minimum-stability" : "stable",
     "require": {
         "php" : "^7.4",
-        "labo86/staty" : "0.3.0",
-        "labo86/hapi" : "^0.1",
+        "labo86/staty" : "^0.3",
+        "labo86/hapi" : "^1.0",
+        "labo86/rdtas" : "^3.1",
         "edwrodrig/image" : "^3.0",
         "ext-json": "*",
         "ext-imagick": "*"
@@ -22,16 +23,14 @@
     },
     "autoload" : {
         "psr-4" : {
-            "tpl_company_tpl\\tpl_project_tpl\\model\\" : "modules/model/src/",
-            "tpl_company_tpl\\tpl_project_tpl\\site\\" : "modules/site/src/",
-            "tpl_company_tpl\\tpl_project_tpl\\controller\\" : "modules/controller/src/"
+            "tpl_company_tpl\\tpl_project_tpl\\app\\" : "modules/app/src/",
+            "tpl_company_tpl\\tpl_project_tpl\\site\\" : "modules/site/src/"
         }
     },
     "autoload-dev" : {
         "psr-4" : {
-            "test\\tpl_company_tpl\\tpl_project_tpl\\model\\" : "modules/model/test/",
-            "test\\tpl_company_tpl\\tpl_project_tpl\\site\\" : "modules/site/test/",
-            "test\\tpl_company_tpl\\tpl_project_tpl\\controller\\" : "modules/controller/test/"
+            "test\\tpl_company_tpl\\tpl_project_tpl\\app\\" : "modules/app/test/",
+            "test\\tpl_company_tpl\\tpl_project_tpl\\site\\" : "modules/site/test/"
         }
     }
 }

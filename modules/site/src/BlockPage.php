@@ -41,6 +41,7 @@ class BlockPage extends Block
 
         $lib_js = new PageFile(new SourceFile(__DIR__ . '/../../site_res/dist/index.min.js') , 'bundle/index.min.js');
         ?>
+        <script src="https://unpkg.com/@labo86/sero@latest/dist/sero.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -61,7 +62,7 @@ class BlockPage extends Block
      * @return string
      */
     public function service() : string {
-        $php_include = sprintf("<?php\ninclude \"%s\";", realpath(__DIR__ . '/../../controller/www/ws.php'));
+        $php_include = sprintf("<?php\ninclude \"%s\";", realpath(__DIR__ . '/../../../data/services/ws.php'));
         $link = new PageString($php_include, 'controller/ws.php');
         return $this->makePage($link);
     }

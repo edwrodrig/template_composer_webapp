@@ -31,8 +31,5 @@
     "transform": {
       "^.+\\.js?$": "babel-jest"
     }
-  },
-  "dependencies": {
-    "@labo86/sero": "^1.2.1"
   }
 }
