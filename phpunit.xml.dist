@@ -2,16 +2,15 @@
 <phpunit bootstrap="./vendor/autoload.php">
     <testsuites>
         <testsuite name="main">
-            <directory>./modules/model/test</directory>
+            <directory>./modules/app/test</directory>
             <directory>./modules/site/test</directory>
-            <directory>./modules/controller/test</directory>
+            <exclude>./modules/app/test/DataAccessMySqlTest.php</exclude>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./modules/model/src</directory>
+            <directory suffix=".php">./modules/app/src</directory>
             <directory suffix=".php">./modules/site/src</directory>
-            <directory suffix=".php">./modules/controller/src</directory>
         </whitelist>
     </filter>
 </phpunit>
