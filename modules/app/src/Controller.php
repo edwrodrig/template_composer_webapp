@@ -21,7 +21,7 @@ class Controller extends \labo86\hapi\Controller
     public function __construct() {
         parent::__construct();
 
-        Util::registerAutomaticMethodService($this, __DIR__ . '/../../../data/services/services.php');
+        Util::registerAutomaticMethodService($this, __DIR__ . '/../../../data/services/services_user.php', 'get_services_user');
 
         $this->getServiceMap()
             ->registerService('sum', function(Request $request) : Response {
