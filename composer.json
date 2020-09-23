@@ -13,11 +13,12 @@
         "php" : "^7.4",
         "labo86/staty" : "^0.3",
         "labo86/hapi" : "^1.0",
-        "labo86/rdtas" : "^3.2",
-        "edwrodrig/image" : "^3.0",
+        "labo86/rdtas" : "^3.3",
+        "edwrodrig/image" : "^3.4",
         "ext-json": "*",
         "ext-imagick": "*",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-fileinfo": "*"
     },
     "require-dev" : {
         "phpunit/phpunit" : "^8.5"

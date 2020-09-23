@@ -29,4 +29,24 @@ class DataAccessMySql extends DataAccess
         $stmt = UtilPDO::prepare($pdo, $schema);
         UtilPDO::execute($stmt);
     }
+
+    public function getSession(string $session_id) : array {
+        $pdo = $this->getPDO();
+
+        $row = UtilPDO::selectRow($pdo, 'SELECT user_id, creation_date, expiration_date, state FROM sessions WHERE session_id = :session_id', [
+            'session_id' => $session_id
+        ]);
+
+        return $row;
+    }
+
+    public function getUser(string $user_id) : array {
+        $pdo = $this->getPDO();
+
+        $row = UtilPDO::selectRow($pdo, 'SELECT user_id, name FROM users WHERE user_id = :user_id', [
+            'user_id' => $user_id
+        ]);
+
+        return $row;
+    }
 }

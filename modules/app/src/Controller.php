@@ -9,7 +9,6 @@ use labo86\hapi_core\Response;
 use labo86\hapi_core\ResponseJson;
 use labo86\rdtas\hapi\Util;
 use ReflectionException;
-use tpl_company_tpl\tpl_project_tpl\app\Sum;
 
 class Controller extends \labo86\hapi\Controller
 {
@@ -22,6 +21,7 @@ class Controller extends \labo86\hapi\Controller
         parent::__construct();
 
         Util::registerAutomaticMethodService($this, __DIR__ . '/../../../data/services/services_user.php', 'get_services_user');
+        Util::registerAutomaticMethodService($this, __DIR__ . '/../../../data/services/services_admin.php', 'get_services_admin');
 
         $this->getServiceMap()
             ->registerService('sum', function(Request $request) : Response {
