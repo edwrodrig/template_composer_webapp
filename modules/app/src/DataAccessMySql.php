@@ -19,6 +19,10 @@ class DataAccessMySql extends DataAccess
 
     public string $file_directory = __DIR__ . '/../../../var/files';
 
+    public function setPDO(PDO $pdo) {
+        $this->pdo = $pdo;
+    }
+
     public function getPDO() : PDO {
         if ( !isset($this->pdo) )
             $this->pdo = new PDO(UtilPDO::mysqlDns($this->database_name), $this->database_user, $this->database_password);
@@ -27,9 +31,8 @@ class DataAccessMySql extends DataAccess
 
     public function createDatabase() {
         $pdo = $this->getPDO();
-        $schema = file_get_contents(__DIR__ . '/../../../scripts/schema.sql');
-        $stmt = UtilPDO::prepare($pdo, $schema);
-        UtilPDO::execute($stmt);
+        $schema = file_get_contents(__DIR__ . '/../../../scripts/ddl_tables.sql');
+        $stmt = $pdo->exec($schema);
     }
 
     public function getFileDirectory() : string {

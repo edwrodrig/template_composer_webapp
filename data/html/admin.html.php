@@ -214,7 +214,9 @@ update_error_list_button.add_click_listener(function() {
             for ( let error of response ) {
                 let error_id = error.i
                 let user_msg = error.m;
-                let dev_msg = error.p.m;
+                let dev_msg = '';
+                if ( error.hasOwnProperty('p') )
+                    dev_msg = error.p.m;
                 let link = endpoint + '?method=get_error_by_error_id&session_id=' + page.get_session_id() + '&error_id=' + error_id;
 
                 let row = new Element(Element.importNode('error_table_row'));

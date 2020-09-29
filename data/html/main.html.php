@@ -26,6 +26,9 @@ $BLOCK->sectionBeginHeadAddition(); ?>
         <li class="nav-item">
             <a class="nav-link" href="#" role="tab" aria-controls="tab_pane_hello">Saludar</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" role="tab" aria-controls="tab_pane_server">Servicios</a>
+        </li>
     </ul>
     <button id="logout_button" class="btn btn-outline-secondary ml-3">Salir</button>
 </nav>
@@ -60,6 +63,11 @@ $BLOCK->sectionBeginHeadAddition(); ?>
             </div>
         </form>
     </div>
+    <div id="tab_pane_server" class="tab-pane pt-5" role="tabpanel">
+        <h3>Servicios de usuario</h3>
+        <div id="tab_pane_services" class="tab-pane" role="tabpanel">
+        </div>
+    </div>
 </div>
 </div>
 <?php $BLOCK->htmlFooter()?>
@@ -80,7 +88,8 @@ $BLOCK->sectionBeginHeadAddition(); ?>
         'Table',
         'Form',
         'TabControls',
-        'TabContents')?>
+        'TabContents',
+        'SectionEasyServices')?>
 
 let page = new Page();
 let fruit_table = new Table('fruit_table');
@@ -109,6 +118,9 @@ page.bind_button(hello_form.submit_button,
         form.set_disabled(false);
     }
 );
+
+let section_easy_services = new SectionEasyServices('tab_pane_services');
+section_easy_services.add_services(endpoint + '?method=get_services_host');
 
 
 
