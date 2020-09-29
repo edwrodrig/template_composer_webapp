@@ -37,16 +37,13 @@ class BlockPage extends Block
     /**
      * @throws ExceptionWithData
      */
-    public function htmlHeadCommon() {
-
-        $lib_js = new PageFile(new SourceFile(__DIR__ . '/../../site_res/dist/index.min.js') , 'bundle/index.min.js');
-        ?>
-        <script src="https://unpkg.com/@labo86/sero@latest/dist/sero.min.js"></script>
+    public function htmlHeadCommon() {?>
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <script src="<?=$this->makePage($lib_js)?>"></script>
+        <link rel="icon" href="/images/logo/logo32x32.png" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <?php
     }
 
@@ -58,12 +55,25 @@ class BlockPage extends Block
         return $this->page->getMetadata()['description'] ?? '';
     }
 
-    /**
-     * @return string
-     */
     public function service() : string {
         $php_include = sprintf("<?php\ninclude \"%s\";", realpath(__DIR__ . '/../../../data/services/ws.php'));
         $link = new PageString($php_include, 'controller/ws.php');
         return $this->makePage($link);
+    }
+
+    public function getAppName() : string {
+        return 'tpl_project_tpl';
+    }
+
+    public function getCopyrightText() : string {
+        return sprintf('Edwin Rodríguez-León © %d',date('Y'));
+    }
+
+    public function htmlFooter() {?>
+        <footer class="text-center mt-5">
+            <img src="/images/labo86_black_letter_400x128.png" width="120">
+            <p class="mt-2 text-secondary small"><?=$this->getCopyrightText()?></p>
+        </footer>
+        <?php
     }
 }

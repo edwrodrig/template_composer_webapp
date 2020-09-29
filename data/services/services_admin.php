@@ -1,11 +1,14 @@
 <?php
 declare(strict_types=1);
 
-use labo86\exception_with_data\ExceptionForFrontEnd;
-use labo86\rdtas\pdo\Util;
 use tpl_company_tpl\tpl_project_tpl\app\DataAccessMySql;
 
-function get_error_by_error_id(string $error_id) : array {
+function get_error_by_error_id(string $session_id, string $error_id) : array {
+    $dao = new DataAccessMySql();
+    $pdo = $dao->getPDO();
+
+    $user = \labo86\rdtas\app\User::validateAdminFromSessionId($pdo, $session_id);
+
     foreach (labo86\rdtas\Util::readFileByLine(__DIR__ . '/../../var/error_log') as $line ) {
         $error = json_decode($line, true);
         if ( $error['i'] === $error_id )
@@ -14,26 +17,25 @@ function get_error_by_error_id(string $error_id) : array {
     return [];
 }
 
-function get_user_unfriendly_error_list() : array {
+function get_error_list(string $session_id) : array {
+    $dao = new DataAccessMySql();
+    $pdo = $dao->getPDO();
+
+    $user = \labo86\rdtas\app\User::validateAdminFromSessionId($pdo, $session_id);
+
     $error_list = [];
     foreach (labo86\rdtas\Util::readFileByLine(__DIR__ . '/../../var/error_log') as $line ) {
-        $error = json_decode($line, true);
-        if ( $error['m'] === 'some error has occurred') {
-            $error_list[] = $error;
-        }
+        $error_list[] = json_decode($line, true);
     }
     return $error_list;
 }
 
-function get_user_error_list() : array {
-    $error_list = [];
-    foreach (labo86\rdtas\Util::readFileByLine(__DIR__ . '/../../var/error_log') as $line ) {
-        $error = json_decode($line, true);
-    }
-    return $error_list;
-}
+function get_php_server_info(string $session_id) : array {
+    $dao = new DataAccessMySql();
+    $pdo = $dao->getPDO();
 
-function get_php_server_info() : array {
+    $user = \labo86\rdtas\app\User::validateAdminFromSessionId($pdo, $session_id);
+
     return [
         'post_max_size' => ini_get ( 'post_max_size'),
         'upload_max_filesize' => ini_get ( 'upload_max_filesize'),
@@ -43,63 +45,55 @@ function get_php_server_info() : array {
 
 }
 
-function create_user(string $username, string $password) : array {
+function create_user(string $session_id, string $username, string $password) : array {
     $dao = new DataAccessMySql();
     $pdo = $dao->getPDO();
+
+    $user = \labo86\rdtas\app\User::validateAdminFromSessionId($pdo, $session_id);
 
     $user_id = uniqid();
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
-    Util::updateOne($pdo,"INSERT INTO users (user_id, name, password_hash) VALUES (:user_id, :name, :password_hash)", [
-        'user_id' => $user_id,
-        'name' => $username,
-        'password_hash' => $password_hash,
-        'type' => 'REGISTERED'
-    ]);
-
-    return [
-        'user_id' => $user_id,
-        'name' => $username
-    ];
+    return \labo86\rdtas\app\User::createUser($pdo, $user_id, $username, $password_hash);
 }
 
-
-function get_session(string $username, string $password) : array {
+function set_user_type(string $session_id, string $username, string $type) : array {
     $dao = new DataAccessMySql();
     $pdo = $dao->getPDO();
 
-    $row = Util::selectRow($pdo,"SELECT user_id, name, password_hash FROM users WHERE name = :name AND type = :type", [
-        'name' => $username,
-        'type' => 'REGISTERED',
-    ]);
+    $user = \labo86\rdtas\app\User::validateAdminFromSessionId($pdo, $session_id);
 
-    $session_id = md5(microtime());
-    $password_hash = $row['password_hash'];
-    if ( !password_verify($password, $password_hash) ) {
-        throw new ExceptionForFrontEnd('error al ingresar', [], new ExceptionWithData('wrong password', [
-            'username' => $username,
-            'password' => $password
-        ]));
-    }
+    $user = \labo86\rdtas\app\User::getUserByName($pdo, $username);
+    \labo86\rdtas\app\User::setUserType($pdo, $user['user_id'], $type);
+    return [];
+}
 
-    $user_id = $row['user_id'];
-    $date = new DateTime();
-    $creation_date = $date->format("Y-m-d H:i:s");
-    $date->add(new DateInterval('P1D'));
-    $expiration_date =  $date->format("Y-m-d H:i:s");
-    Util::updateOne($pdo, 'INSERT INTO sessions (session_id, user_id, creation_date, expiration_date, state) VALUES (:session_id, :user_id, :creation_date, :expiration_date, :state)',
-        [
-            'session_id' => $session_id,
-            'user_id' => $user_id,
-            'creation_date' => $creation_date,
-            'expiration_date' => $expiration_date,
-            'state' => 'ACTIVE'
-        ]);
+function set_user_password(string $session_id, string $username, string $password) : array {
+    $dao = new DataAccessMySql();
+    $pdo = $dao->getPDO();
 
-    return [
-        'session_id' => $session_id,
-        'user_id' => $user_id
-    ];
+    $user = \labo86\rdtas\app\User::validateAdminFromSessionId($pdo, $session_id);
 
+    $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
+    $user = \labo86\rdtas\app\User::getUserByName($pdo, $username);
+    \labo86\rdtas\app\User::setUserPassword($pdo, $user['user_id'], $password_hash);
+
+    return [];
+}
+
+function create_session(string $username, string $password) : array {
+    $dao = new DataAccessMySql();
+    $pdo = $dao->getPDO();
+
+    return \labo86\rdtas\app\User::createSession($pdo, $username, $password);
+
+}
+
+function close_session(string $session_id) : array {
+    $dao = new DataAccessMySql();
+    $pdo = $dao->getPDO();
+
+    \labo86\rdtas\app\User::closeSession($pdo, $session_id);
+    return [];
 }

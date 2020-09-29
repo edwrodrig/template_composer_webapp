@@ -12,8 +12,8 @@
     "require": {
         "php" : "^7.4",
         "labo86/staty" : "^0.3",
-        "labo86/hapi" : "^1.0",
-        "labo86/rdtas" : "^3.3",
+        "labo86/hapi" : "^2.0",
+        "labo86/rdtas" : "^4.1",
         "edwrodrig/image" : "^3.4",
         "ext-json": "*",
         "ext-imagick": "*",

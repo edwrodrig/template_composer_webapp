@@ -17,6 +17,8 @@ class DataAccessMySql extends DataAccess
 
     private PDO $pdo;
 
+    public string $file_directory = __DIR__ . '/../../../var/files';
+
     public function getPDO() : PDO {
         if ( !isset($this->pdo) )
             $this->pdo = new PDO(UtilPDO::mysqlDns($this->database_name), $this->database_user, $this->database_password);
@@ -28,6 +30,10 @@ class DataAccessMySql extends DataAccess
         $schema = file_get_contents(__DIR__ . '/../../../scripts/schema.sql');
         $stmt = UtilPDO::prepare($pdo, $schema);
         UtilPDO::execute($stmt);
+    }
+
+    public function getFileDirectory() : string {
+        return \labo86\rdtas\Util::createDirectory($this->file_directory);
     }
 
     public function getSession(string $session_id) : array {
