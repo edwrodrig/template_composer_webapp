@@ -86,7 +86,9 @@ function create_session(string $username, string $password) : array {
     $dao = new DataAccessMySql();
     $pdo = $dao->getPDO();
 
-    return \labo86\rdtas\app\User::createSession($pdo, $username, $password);
+    $result = \labo86\rdtas\app\User::createSession($pdo, $username, $password);
+    setcookie('session_id', $result['session_id']);
+    return $result;
 
 }
 

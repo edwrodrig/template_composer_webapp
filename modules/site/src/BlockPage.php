@@ -76,4 +76,49 @@ class BlockPage extends Block
         </footer>
         <?php
     }
+
+    /**
+     * Obtiene el directorio en que los modulos se encuentran. Por convención estarán en una carpeta modulo.
+     * @return string
+     */
+    public function getModulesDir() : string {
+        return $this->getBaseDir() . '/../modules';
+    }
+
+    public function getBaseDir() : string {
+        return str_replace('/' . $this->page->getRelativeFilename() . '.php', '', $this->page->getSourceFilename());
+    }
+
+    public function moduleFile(string $file) {
+        return $this->getModulesDir() . '/' . $file;
+    }
+
+    public function import($file) {
+        $module_file = $this->moduleFile($file);
+        if ( !file_exists($module_file) ) {
+            throw new ExceptionWithData('module not found', [
+                'file' => $file,
+                'module_file' => $module_file
+            ]);
+        }
+
+        include($module_file);
+
+    }
+
+    public function importComponent(...$components) {
+        foreach ( $components as $component ) {
+            $module_file = $this->moduleFile('components/local/' . $component . '.js');
+            if ( !file_exists($module_file)) {
+                $module_file = $this->moduleFile('components/remote/' . $component . '.js');
+                if ( !file_exists($module_file) ) {
+                    throw new ExceptionWithData('component not found', [
+                        'component' => $component,
+                        'module_file' => $module_file
+                    ]);
+                }
+            }
+            include($module_file);
+        }
+    }
 }

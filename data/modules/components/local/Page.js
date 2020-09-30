@@ -8,6 +8,14 @@ class Page {
         }
     }
 
+    connect_logout_button(button_id) {
+        let button = new Button(button_id);
+        let page = this;
+        button.add_click_listener(function() {
+            page.logout();
+        });
+    }
+
     logout() {
         localStorage.removeItem('session_id');
         window.location.href = '/login.html';
@@ -56,5 +64,10 @@ class Page {
                 }
             ));
         })
+    }
+
+    get url_params() {
+        let url = new URL(window.location);
+        return new URLSearchParams(url.search);
     }
 }

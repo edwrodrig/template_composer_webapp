@@ -1,0 +1,43 @@
+<h3>Session Id actual</h3>
+<form id="session_id_form" class="form-inline mb-5">
+    <div class="form-group flex-grow-1">
+        <input type="text" name="session_id" class="form-control w-100" readonly>
+    </div>
+    <button type="submit" class="btn btn-primary ml-3">Obtener</button>
+</form>
+<h3>Crear usuario</h3>
+<form id="create_user_form" class="mb-5">
+    <div class="form-group">
+        <label class="sr-only">Nombre de usuario</label>
+        <input type="text" name="username" class="form-control" placeholder="usuario">
+    </div>
+    <div class="form-group">
+        <label class="sr-only">Contraseña</label>
+        <input type="password" name="password" class="form-control" placeholder="contraseña">
+    </div>
+    <button type="submit" class="btn btn-primary" data-waiting-text="Creando..." data-ready-text="Crear usuario">Crear usuario</button>
+</form>
+<h3>Cambiar tipo de usuario</h3>
+<form id="set_user_type_form" class="mb-5">
+    <div class="form-group">
+        <label class="sr-only">Nombre de usuario</label>
+        <input type="text" name="username" class="form-control" placeholder="usuario">
+    </div>
+    <div class="form-group">
+        <label class="sr-only">Contraseña</label>
+        <input type="text" name="type" class="form-control" placeholder="type">
+    </div>
+    <button type="submit" class="btn btn-primary" data-waiting-text="Cambiando..." data-ready-text="Cambiar">Cambiar</button>
+</form>
+<h3>Cambiar contraseña de usuario</h3>
+<form id="set_user_password_form" class="mb-5">
+    <div class="form-group">
+        <label class="sr-only">Nombre de usuario</label>
+        <input type="text" name="username" class="form-control" placeholder="usuario">
+    </div>
+    <div class="form-group">
+        <label class="sr-only">Nuevas Contraseña</label>
+        <input type="password" name="password" class="form-control" placeholder="nueva contraseña">
+    </div>
+    <button type="submit" class="btn btn-primary" data-waiting-text="Cambiando..." data-ready-text="Cambiar">Cambiar</button>
+</form>

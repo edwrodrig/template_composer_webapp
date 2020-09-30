@@ -16,20 +16,4 @@ class Block extends \labo86\staty\Block
         else
             return Util::getRelativePath($from, $relative_path);
     }
-
-    public function getComponentJs(...$components) {
-        foreach ( $components as $component ) {
-            $component_file = __DIR__ . '/../../components/local/' . $component . '.js';
-            if ( file_exists($component_file) ) {
-                include($component_file);
-                continue;
-            }
-
-            $component_file = __DIR__ . '/../../components/remote/' . $component . '.js';
-            if ( file_exists($component_file) ) {
-                include($component_file);
-                continue;
-            }
-        }
-    }
 }

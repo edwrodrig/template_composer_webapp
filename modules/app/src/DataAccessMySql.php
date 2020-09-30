@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace tpl_company_tpl\tpl_project_tpl\app;
 
+use labo86\rdtas\app\User;
 use labo86\rdtas\pdo\Util as UtilPDO;
 use PDO;
 
-class DataAccessMySql extends DataAccess
+class DataAccessMySql
 {
 
     public string $database_name = 'tpl_company_tpl_tpl_project_tpl';
@@ -24,8 +25,10 @@ class DataAccessMySql extends DataAccess
     }
 
     public function getPDO() : PDO {
-        if ( !isset($this->pdo) )
-            $this->pdo = new PDO(UtilPDO::mysqlDns($this->database_name), $this->database_user, $this->database_password);
+        if ( !isset($this->pdo) ) {
+            $this->pdo = new PDO(sprintf('sqlite:%s', __DIR__ . '/../../../var/test.db'));
+            //$this->pdo = new PDO(UtilPDO::mysqlDns($this->database_name), $this->database_user, $this->database_password);
+        }
         return $this->pdo;
     }
 
@@ -33,6 +36,9 @@ class DataAccessMySql extends DataAccess
         $pdo = $this->getPDO();
         $schema = file_get_contents(__DIR__ . '/../../../scripts/ddl_tables.sql');
         $stmt = $pdo->exec($schema);
+        $user_id = uniqid();
+        User::createUser($pdo, $user_id, 'admin', password_hash('pass', PASSWORD_DEFAULT));
+        User::setUserType($pdo, $user_id, 'ADMIN');
     }
 
     public function getFileDirectory() : string {

@@ -1,0 +1,18 @@
+<div class="d-flex d-column mb-2">
+    <button id="fruit_table_update_button" class="btn btn-primary" data-waiting-text="Actualizando..." data-ready-text="Actualizar">Actualizar</button>
+</div>
+<table id="fruit_table" class="table" data-waiting-text="Obteniendo frutas...">
+    <thead>
+    <tr>
+        <th>Nombre</th><th>Color</th><th></th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<template id="fruit_table_row">
+    <tr>
+        <td data-role="name"></td>
+        <td data-role="color"></td>
+        <td><a class="btn btn-secondary" data-role="link" target="_blank">Ver</a></td>
+    </tr>
+</template>

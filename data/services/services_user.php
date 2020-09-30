@@ -8,7 +8,7 @@ function say_hello(string $session_id, string $name) : string {
     return "hello " . $name;
 }
 
-function get_list(string $session_id) : array {
+function get_fruit_list(string $session_id) : array {
     $dao = new \tpl_company_tpl\tpl_project_tpl\app\DataAccessMySql();
     $pdo = $dao->getPDO();
     labo86\rdtas\app\User::validateSession($pdo, $session_id);

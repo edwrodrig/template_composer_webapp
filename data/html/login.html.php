@@ -34,17 +34,10 @@ $BLOCK->sectionBeginHeadAddition(); ?>
         </div>
     </form>
 </div>
-<template id="snack_bar">
-    <div class="container fixed-bottom">
-        <div class="alert text-center" role="alert">
-            <span data-role="message"></span>
-            <button class="ml-3 btn btn-danger btn-sm d-none" data-role="close">Cerrar</button>
-        </div>
-    </div>
-</template>
 <?php $BLOCK->htmlFooter();?>
+<?php $BLOCK->import('snack_bar.html')?>
 <script>
-<?php $BLOCK->getComponentJs(
+<?php $BLOCK->importComponent(
     'Element',
     'SnackBar',
     'Page',
@@ -61,7 +54,6 @@ page.bind_button(login_form.submit_button,
     },
     function(json) {
         let form = login_form;
-        localStorage.session_id = json.session_id;
         localStorage.username = form.form_data.get('username');
         window.location.href = '/main.html';
         form.submit_button.set_label('Redirigiendo...');
