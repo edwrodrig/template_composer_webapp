@@ -1,17 +1,6 @@
 let create_user_form = new Form('create_user_form');
 let set_user_type_form = new Form('set_user_type_form');
 let set_user_password_form = new Form('set_user_password_form');
-let session_id_form = new Form('session_id_form');
-
-session_id_form.submit_button.add_click_listener(function() {
-    let form = session_id_form;
-    form.element.elements['session_id'].value = page.get_session_id();
-
-    navigator.clipboard.writeText(page.get_session_id());
-
-    page.snack_bar.show_success('Session id copiado al portapapeles');
-
-});
 
 page.bind_button(create_user_form.submit_button,
     function(form_data)
