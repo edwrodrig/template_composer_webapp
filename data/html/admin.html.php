@@ -35,7 +35,7 @@ $BLOCK->sectionBeginHeadAddition();?>
 <div class="container">
     <div id="tab_contents" class="tab-content">
         <div id="tab_pane_errors" class="tab-pane pt-5 active" role="tabpanel">
-            <?php $BLOCK->import('admin/error_list.html') ?>
+            <?php $BLOCK->import('admin/error_table.html') ?>
         </div>
         <div id="tab_pane_users" class="tab-pane pt-5" role="tabpanel">
             <?php $BLOCK->import('admin/users.html') ?>
@@ -70,7 +70,7 @@ nav.connect_contents('tab_contents')
 
 let endpoint = '<?=$BLOCK->service()?>';
 
-<?php $BLOCK->import('admin/error_list.js') ?>
+<?php $BLOCK->import('admin/error_table.js') ?>
 <?php $BLOCK->import('admin/users.js') ?>
 
 let section_easy_services = new SectionEasyServices('tab_pane_services_admin');
