@@ -11,9 +11,9 @@
     "minimum-stability" : "stable",
     "require": {
         "php" : "^7.4",
-        "labo86/staty" : "^0.3",
-        "labo86/hapi" : "^2.0",
-        "labo86/rdtas" : "^4.2",
+        "labo86/staty" : "^1.0",
+        "labo86/hapi" : "^4.0",
+        "labo86/rdtas" : "^6.0.1",
         "edwrodrig/image" : "^3.4",
         "ext-json": "*",
         "ext-imagick": "*",

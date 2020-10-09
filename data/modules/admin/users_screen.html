@@ -1,0 +1,38 @@
+<div id="users_screen">
+    <h3>Crear usuario</h3>
+    <form data-id="create_user_form" class="mb-5">
+        <div class="form-group">
+            <label class="sr-only">Nombre de usuario</label>
+            <input type="text" name="username" class="form-control" placeholder="usuario">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Contraseña</label>
+            <input type="password" name="password" class="form-control" placeholder="contraseña">
+        </div>
+        <button data-id="submit" class="btn btn-primary" data-waiting-text="Creando..." data-ready-text="Crear usuario">Crear usuario</button>
+    </form>
+    <h3>Cambiar tipo de usuario</h3>
+    <form data-id="set_user_type_form" class="mb-5">
+        <div class="form-group">
+            <label class="sr-only">Nombre de usuario</label>
+            <input type="text" name="username" class="form-control" placeholder="usuario">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Contraseña</label>
+            <input type="text" name="type" class="form-control" placeholder="type">
+        </div>
+        <button data-id="submit" class="btn btn-primary" data-waiting-text="Cambiando..." data-ready-text="Cambiar">Cambiar</button>
+    </form>
+    <h3>Cambiar contraseña de usuario</h3>
+    <form data-id="set_user_password_form" class="mb-5">
+        <div class="form-group">
+            <label class="sr-only">Nombre de usuario</label>
+            <input type="text" name="username" class="form-control" placeholder="usuario">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Nuevas Contraseña</label>
+            <input type="password" name="password" class="form-control" placeholder="nueva contraseña">
+        </div>
+        <button data-id="submit" class="btn btn-primary" data-waiting-text="Cambiando..." data-ready-text="Cambiar">Cambiar</button>
+    </form>
+</div>

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace test\tpl_company_tpl\tpl_project_tpl\app;
 
-use tpl_company_tpl\tpl_project_tpl\app\DataAccessMySql;
+use tpl_company_tpl\tpl_project_tpl\app\DataAccessDb;
 use PHPUnit\Framework\TestCase;
 
-class DataAccessMySqlTest extends TestCase
+class DataAccessDbTest extends TestCase
 {
 
     private $path;
@@ -27,7 +27,7 @@ class DataAccessMySqlTest extends TestCase
 
     public function testLoadSaveTournamentBasic()
     {
-        $dao = new DataAccessMySql();
+        $dao = new DataAccessDb();
 
     }
 }

@@ -1,36 +1,16 @@
-class Page {
-    get_session_id() {
-        let session_id = localStorage.getItem('session_id');
-        if ( session_id === null ) {
-            window.location.href = '/login.html';
-        } else {
-            return session_id;
-        }
-    }
-
-    connect_logout_button(button_id) {
-        let button = new Button(button_id);
-        let page = this;
-        button.add_click_listener(function() {
-            page.logout();
-        });
+class Page extends Element {
+    constructor() {
+        super(document.body);
     }
 
     logout() {
-        localStorage.removeItem('session_id');
+        document.cookie = '';
         window.location.href = '/login.html';
     }
 
-    handle(success, failure) {
-        return function(response) {
-            if (response.ok) {
-                response.json()
-                    .then(success);
-            } else {
-                response.json()
-                    .then(failure);
-            }
-        }
+    get session_id() {
+        let v = document.cookie.match('(^|;) ?session_id=([^;]*)(;|$)');
+        return v ? v[2] : null;
     }
 
     get snack_bar() {
@@ -40,34 +20,48 @@ class Page {
     handle_error(data) {
         let code = data.i;
         let message = data.m;
-        let str = "[codigo: " + code + "] " + message;
+        let str = message + " [" + code + "]";
         this.snack_bar.show_error(str);
     }
 
-    bind_button(target_button, form_set_callback, success_callback) {
-        target_button.add_click_listener(function() {
-            let form = target_button.form;
-            let form_data = form.form_data;
-            form_set_callback(form_data);
-
-            form.set_disabled(true);
-            target_button.set_status_waiting();
-
-            fetch(endpoint, {
-                method: 'POST',
-                body: form_data
-            }).then(page.handle(success_callback,
-                function(json) {
-                    page.handle_error(json);
-                    target_button.set_status_ready();
-                    form.set_disabled(false);
-                }
-            ));
-        })
+    async handle_exception(exception) {
+        if ( exception instanceof Response ) {
+            const error = await exception.json();
+            this.handle_error(error);
+        } else {
+            this.snack_bar.show_error('A ocurrido un problema. Por favor actualize la página');
+            console.log(exception);
+        }
     }
 
     get url_params() {
         let url = new URL(window.location);
         return new URLSearchParams(url.search);
+    }
+
+    async fetch(endpoint, params) {
+        let response
+        if ( params === undefined ) {
+            response = await fetch(endpoint);
+        }
+        else if ( params instanceof FormData ) {
+            response = await fetch(endpoint, {
+                method: 'POST',
+                body: params
+            });
+        }  else {
+            response = await fetch(endpoint, {
+                method: 'POST',
+                headers:  {'Content-Type' : 'application-json'},
+                body: JSON.stringify(params)
+            });
+        }
+
+        if ( !response.ok ) {
+            throw response;
+        }
+
+        return response;
+
     }
 }

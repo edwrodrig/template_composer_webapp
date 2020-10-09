@@ -1,0 +1,14 @@
+[
+  {
+    "id": "fruit_screen",
+    "label" : "Frutas"
+  },
+  {
+    "id": "hello_screen",
+    "label" : "Saludar"
+  },
+  {
+    "id": "services_screen",
+    "label" : "Servicios"
+  }
+]

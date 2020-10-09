@@ -1,0 +1,14 @@
+[
+  {
+    "id": "errors_screen",
+    "label" : "Errores"
+  },
+  {
+    "id": "users_screen",
+    "label" : "Usuarios"
+  },
+  {
+    "id": "services_screen",
+    "label" : "Servicios"
+  }
+]

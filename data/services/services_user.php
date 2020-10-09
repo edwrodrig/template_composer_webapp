@@ -1,15 +1,18 @@
 <?php
 declare(strict_types=1);
 
+use tpl_company_tpl\tpl_project_tpl\app\ConfigDefault;
+use tpl_company_tpl\tpl_project_tpl\app\DataAccessDb;
+
 function say_hello(string $session_id, string $name) : string {
-    $dao = new \tpl_company_tpl\tpl_project_tpl\app\DataAccessMySql();
+    $dao = new DataAccessDb(new ConfigDefault());
     $pdo = $dao->getPDO();
     labo86\rdtas\app\User::validateSession($pdo, $session_id);
     return "hello " . $name;
 }
 
 function get_fruit_list(string $session_id) : array {
-    $dao = new \tpl_company_tpl\tpl_project_tpl\app\DataAccessMySql();
+    $dao = new DataAccessDb(new ConfigDefault());
     $pdo = $dao->getPDO();
     labo86\rdtas\app\User::validateSession($pdo, $session_id);
 
