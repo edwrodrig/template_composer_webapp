@@ -14,7 +14,7 @@ class Page extends Element {
     }
 
     get snack_bar() {
-        return new SnackBar('snack_bar');
+        return new SnackBar(this.new_tpl('snack_bar').dom);
     }
 
     handle_error(data) {

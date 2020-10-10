@@ -21,7 +21,7 @@ let hello_screen = new class extends Element {
         button.set_disabled(true);
 
         try {
-            const response = await page.fetch(endpoint);
+            const response = await page.fetch(endpoint, form_data);
             const success = await response.json();
 
             page.snack_bar.show_success(JSON.stringify(success));

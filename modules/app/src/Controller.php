@@ -28,6 +28,7 @@ class Controller extends \labo86\hapi\Controller
         $this->setMessageMapper(new MessageMapperArray($this->msg_array));
 
         Util::registerAutomaticMethodService($this, __DIR__ . '/../../../data/services/services_user.php', 'get_services_user');
+        //Util::registerAutomaticMethodService($this, __DIR__ . '/../../../data/services/services_admin.php', 'get_services_admin');
 
         $services  = new class extends ServicesBasic {
             public function getDataAccessUser(): DataAccessDb

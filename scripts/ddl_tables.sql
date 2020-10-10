@@ -15,6 +15,6 @@ create table sessions
     user_id         varchar(36) null,
     creation_date   datetime    null,
     expiration_date datetime    null,
-    state           varchar(36) null
+    status           varchar(36) null
 );
 

@@ -28,7 +28,7 @@ $BLOCK->sectionBeginHeadAddition(); ?>
             </li>
         <?php endforeach;?>
     </ul>
-    <button id="logout_button" class="btn btn-outline-secondary ml-3">Salir</button>
+    <button data-id="logout" class="btn btn-outline-secondary ml-3">Salir</button>
 </nav>
 <div class="container">
     <div id="screen_contents" class="tab-content">
