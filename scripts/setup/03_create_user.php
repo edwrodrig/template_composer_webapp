@@ -10,8 +10,4 @@ $config = Controller::getConfigDefault();
 
 $db = $config->getDatabase('db');
 
-$database_name = $db['db'];
-$database_user = $db['user'];
-$database_password = $db['password'];
-
 DataAccessDb::createCredentials($db->getName(), $db->getUser(), $db->getPassword());
