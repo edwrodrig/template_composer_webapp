@@ -3,73 +3,59 @@ declare(strict_types=1);
 
 namespace test\tpl_company_tpl\tpl_project_tpl\app;
 
-use labo86\exception_with_data\ExceptionWithData;
-use tpl_company_tpl\tpl_project_tpl\app\ConfigDefault;
+use tpl_company_tpl\tpl_project_tpl\app\ControllerInstaller;
+use labo86\rdtas\testing\TestControllerTrait;
 use tpl_company_tpl\tpl_project_tpl\app\Controller;
 use PHPUnit\Framework\TestCase;
-use tpl_company_tpl\tpl_project_tpl\app\DataAccessDb;
 
 class ControllerTest extends TestCase
 {
-    private array $service_record = [];
-
+    use TestControllerTrait;
     public function setUp(): void
     {
-        $this->path = tempnam(__DIR__, 'demo');
-
-        unlink($this->path);
-        mkdir($this->path, 0777);
+        $this->setUpTestFolder(__DIR__);
     }
 
-    public function tearDown(): void
-    {
-        exec('rm -rf ' . $this->path);
-    }
 
-    public function getController() : \labo86\battle_royale\app\Controller
+    public function getController() : \tpl_company_tpl\tpl_project_tpl\app\Controller
     {
-        $config = [
-            'files' => [
-                'type' => 'file_system',
-                'db' => $this->path . '/file'
-            ],
-            'data' => [
+        \labo86\rdtas\app\ConfigDefault::setDefaultData([
+            'db' => [
                 'type' => 'sqlite',
-                'db' => $this->path . '/db.sql'
+                'name' => $this->getTestFolder() . '/db.sql',
+                'schema' => __DIR__ . '/../../../scripts/ddl_tables.sql'
+            ],
+            'error' => [
+                'dir' => $this->getTestFolder() . '/log'
             ]
-        ];
+        ]);
 
-        ConfigDefault::setDefaultData($config);
+        $installer = new ControllerInstaller(Controller::getConfigDefault());
 
-        $dao = new DataAccessDb(new ConfigDefault());
-        $dao->createTables();
         $controller =  new Controller();
-        $controller->setErrorLogFilename($this->path . '/error_log');
+        $installer->prepareDataStores();
+
         return $controller;
 
     }
 
-    public function getErrorLog() : string {
-        $error_log_file = $this->path . '/error_log';
-        if ( file_exists($error_log_file) )
-            return file_get_contents($error_log_file);
-        else return "";
-    }
+    public function testLoginLogoutWorkFlow() {
+        $controller = $this->getController();
 
-    public function makeRequest(Controller $controller, array $parameters, array $file_parameters = [])  {
-        $request = new \labo86\hapi\Request();
-        $request->setParameterList($parameters);
-        $request->setFileParameterList($file_parameters);
-        $response = $controller->handleRequest($request);
-        $data = $response->getData() ?? [];
+        $user = $this->makeRequest($controller, [
+                'method' => 'create_session', 'username' => 'admin' , 'password' => 'pass'
+            ]
+        );
+        $this->assertArrayHasKey('session_id', $user);
 
-        $this->service_record[] = [
-            'request' => [
-                'params' => $parameters,
-                'file' => $file_parameters
-            ],
-            'response' => $data
-        ];
-        return $data;
+        $session_id = $user['session_id'];
+
+        $user = $this->makeRequest($controller, [
+                'method' => 'close_session', 'session_id' => $session_id
+            ]
+        );
+
+        $this->assertNoErrorLogged();
+
     }
 }

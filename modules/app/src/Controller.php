@@ -6,7 +6,7 @@ namespace tpl_company_tpl\tpl_project_tpl\app;
 use labo86\exception_with_data\ExceptionWithData;
 use labo86\exception_with_data\MessageMapperArray;
 use labo86\rdtas\app\ConfigDefault;
-use labo86\rdtas\app\DataAccessFolder;
+use labo86\rdtas\app\DataAccessError;
 use labo86\rdtas\app\ServicesBasic;
 use labo86\rdtas\hapi\Util;
 use ReflectionException;
@@ -16,6 +16,7 @@ class Controller extends \labo86\hapi\Controller
 
     public array $msg_array = [
         \labo86\rdtas\ErrMsg::WRONG_PASSWORD => ErrMsgFrontEnd::WRONG_USER_OR_PASSWORD,
+        \labo86\rdtas\ErrMsg::USER_DOES_NOT_EXIST => ErrMsgFrontEnd::WRONG_USER_OR_PASSWORD,
     ];
 
     /**
@@ -36,10 +37,9 @@ class Controller extends \labo86\hapi\Controller
                 return new DataAccessDb(new ConfigDefault());
             }
 
-            public function getDataAccessError(): DataAccessFolder
+            public function getDataAccessError(): DataAccessError
             {
-                $config = new ConfigDefault();
-                return new DataAccessFolder($config->getFolder('error'));
+                return new DataAccessError(Controller::getConfigDefault());
             }
         };
 
@@ -47,7 +47,7 @@ class Controller extends \labo86\hapi\Controller
         $services->registerServicesUser($this);
         $services->registerServicesUserAdmin($this);
 
-        $this->setErrorLogFilename($services->getDataAccessError()->getFilename('error_log'));
+        $this->setErrorLogFilename($services->getDataAccessError()->getLogFilename());
     }
 
     public static function getConfigDefault() : ConfigDefault {
