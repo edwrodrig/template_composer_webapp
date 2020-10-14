@@ -26,6 +26,33 @@ Zend Engine v3.4.0, Copyright (c) Zend Technologies
     with Xdebug v2.9.2, Copyright (c) 2002-2020, by Derick Rethans
 ```
 
+## Ejemplo de configuración
+```php
+$default_data = [
+    'error' => [
+        'dir' => __DIR__ . '/../../var/log'
+    ],
+    'db' => [
+        'type' => 'sqlite',
+        'name' => __DIR__ . '/../../var/db.sqlite',
+        'schema' => __DIR__ . '/../ddl_tables.sql',
+        /*
+        'user_www' => 'www-data'
+
+        'type' => 'mysql',
+        'db' => 'tpl_company_tpl_tpl_project_tpl',
+        'user' => 'tpl_company_tpl_tpl_project_tpl_app_user',
+        'password' => 'password'
+        */
+    ]
+];
+```
+
+## Conectarse a DB como root en ubuntu
+```
+sudo mysql --defaults-file=/etc/mysql/debian.cnf
+```
+
 ## Notas
   - El código se apega a las recomendaciones de estilo de [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md).
   - Este proyecto esta pensado para ser trabajado usando [PhpStorm](https://www.jetbrains.com/phpstorm).

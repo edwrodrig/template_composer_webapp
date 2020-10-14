@@ -12,8 +12,10 @@ $default_data = [
     'db' => [
         'type' => 'sqlite',
         'name' => __DIR__ . '/../../var/db.sqlite',
-        'schema' => __DIR__ . '/../ddl_tables.sql'
+        'schema' => __DIR__ . '/../ddl_tables.sql',
         /*
+        'user_www' => 'www-data'
+
         'type' => 'mysql',
         'db' => 'tpl_company_tpl_tpl_project_tpl',
         'user' => 'tpl_company_tpl_tpl_project_tpl_app_user',

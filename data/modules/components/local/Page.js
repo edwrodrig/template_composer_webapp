@@ -64,4 +64,20 @@ class Page extends Element {
         return response;
 
     }
+
+    async check_session(callback) {
+        let loading = new TabConnector();
+        loading.add_contents('loading_process');
+
+        try {
+            const response = await page.fetch(endpoint + '?method=get_user_by_session_id');
+            const success = await response.json();
+
+            loading.update('loaded_screen');
+            await callback(success);
+        } catch ( exception ) {
+            page.logout();
+        }
+
+    }
 }

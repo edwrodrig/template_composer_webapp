@@ -5,9 +5,7 @@ namespace tpl_company_tpl\tpl_project_tpl\site;
 
 use labo86\exception_with_data\ExceptionWithData;
 use labo86\rdtas\staty\BlockPageModuleTrait;
-use labo86\staty_core\PageFile;
 use labo86\staty_core\PageString;
-use labo86\staty_core\SourceFile;
 
 class BlockPage extends \labo86\rdtas\staty\Block
 {
@@ -69,7 +67,7 @@ class BlockPage extends \labo86\rdtas\staty\Block
     }
 
     public function getCopyrightText() : string {
-        return sprintf('Edwin Rodríguez-León © %d',date('Y'));
+        return sprintf('Labo86 SpA © %d',date('Y'));
     }
 
     public function htmlFooter() {?>
