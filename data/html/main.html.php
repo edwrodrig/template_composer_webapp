@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use labo86\staty_core\PagePhp;
-use tpl_company_tpl\tpl_project_tpl\site\BlockPage;
+use tpl_company_tpl\tpl_project_tpl\site\BlockPageWithLoading;
 
 /** @var PagePhp $page **/
 $page->prepareMetadata([
@@ -10,7 +10,7 @@ $page->prepareMetadata([
     'description' => 'Pantalla principal'
 ]);
 
-$BLOCK = new BlockPage($page);
+$BLOCK = new BlockPageWithLoading($page);
 
 $screen_components = $BLOCK->loadModuleComponents('main');
 
@@ -68,7 +68,9 @@ $BLOCK->sectionBeginHeadAddition(); ?>
             $component->import('js');
         ?>
 
-        screens.update('fruit_screen');
+        page.check_session(async function (session) {
+            await screens.update('fruit_screen');
+        });
     </script>
 <?php
 $BLOCK->html();

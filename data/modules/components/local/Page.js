@@ -4,7 +4,7 @@ class Page extends Element {
     }
 
     logout() {
-        document.cookie = '';
+        document.cookie = 'session_id=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
         window.location.href = '/login.html';
     }
 
