@@ -6,7 +6,7 @@ use tpl_company_tpl\tpl_project_tpl\site\BlockPage;
 
 /** @var PagePhp $page **/
 $page->prepareMetadata([
-    'title' => 'Ingreso',
+    'title' => 'tpl_project_tpl - Ingreso',
     'description' => 'Ingresa a nuestra formidable aplicación'
 ]);
 
